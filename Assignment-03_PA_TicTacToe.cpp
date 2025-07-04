@@ -6,6 +6,7 @@ bool isDraw(char[][3]);
 void displayBoard(char[][3]);
 void makeAMove(char[][3], char);
 
+
 int main() {
 	//
 	//	PLEASE DO NOT CHANGE function main
@@ -45,20 +46,41 @@ int main() {
 	return 0;
 }
 
-// IMPLEMENTATION OF FUNCTIONS BELOW:
-
-void displayBoard(char board[][3]) {
-	cout << "\n-------------\n";
-	for (int i = 0; i < 3; i++) {
-		cout << "|";
-		for (int j = 0; j < 3; j++) {
-			cout << " " << board[i][j] << " |";
-		}
+void displayBoard(char board[0][3]) {
 		cout << "\n-------------\n";
-	}
+		for (int i = 0; i < 3; i++) {
+			cout << "|";
+			for (int j = 0; j < 3; j++) {
+				cout << " " << board[i][j] << " " << "|";
+			}
+			cout << "\n-------------\n";
+		}
+
 }
 
-bool isWon(char player, char board[][3]) {
+void makeAMove(char board[3][3], char player) {
+		int row, col;
+		bool check = false;
+
+		while (!check) {
+			cout << "Enter a row (0, 1, 2) for player " << player << "\t:" << " ";
+			cin >> row;
+			cout << "Enter a column (0, 1, 2) for player " << player << "\t:" << " ";
+			cin >> col;
+
+			if (board[row][col] != player && board[row][col] != 'X' && board[row][col] != 'O') {
+				board[row][col] = player;
+				check = true;
+			} else {
+				cout << "This cell is already occupied. Try a different cell.\n";
+				check = false;
+			}
+
+		}
+	}
+
+
+bool isWon(char player, char  board[][3]) {
 	for (int i = 0; i < 3; i++) {
 		if (board[i][0] == player && board[i][1] == player && board[i][2] == player)
 			return true;
@@ -82,22 +104,4 @@ bool isDraw(char board[][3]) {
 		}
 	}
 	return true;
-}
-
-void makeAMove(char board[][3], char player) {
-	int row, col;
-	bool validMove = false;
-	do {
-		cout << "Enter a row (0, 1, or 2) for player " << player << ": ";
-		cin >> row;
-		cout << "Enter a column (0, 1, or 2) for player " << player << ": ";
-		cin >> col;
-
-		if (row >= 0 && row <= 2 && col >= 0 && col <= 2 && board[row][col] == ' ') {
-			board[row][col] = player;
-			validMove = true;
-		} else {
-			cout << "This cell is already occupied or invalid. Try again.\n";
-		}
-	} while (!validMove);
 }
