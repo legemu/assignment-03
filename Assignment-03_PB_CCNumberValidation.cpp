@@ -1,3 +1,13 @@
+/****************************************************************
+*
+ * File: Assignment-01_PB_CCNumberValidation.cpp
+ * By: Liecie Salvador
+ * Date: 7-10-25
+ *
+ * Description: This program implements a system which checks
+ * the validity of a credit card number.
+ *
+ ****************************************************************/
 #include <iostream>
 #include <vector>
 #include <iomanip>
@@ -35,26 +45,27 @@ int main()
 	return 0;
 }
 
-bool isvalidcc(const string& cc) {
+bool isvalidcc(const string& ccString) { // Function to check credit card number
 
 	int sumDouble = 0;
 	int sumOdd = 0;
 	int digit;
 
-	for (int i = 0; i < cc.length(); i++) {
-		digit = cc[i] - '0';
-		int posFromRight = cc.length() - i;
+	for (int i = 0; i < ccString.length(); i++) {
+		digit = ccString[i] - '0';
+		int position = ccString.length() - i;
 
-		if (posFromRight % 2 == 0) {
-			digit *= 2;
-			if (digit > 9) digit = digit / 10 + digit % 10;
-			sumDouble += digit;
+		if (position % 2 == 0) { // Checking if position in line is even
+			digit = digit * 2;
+			if (digit > 9) {
+				digit = (digit / 10) + (digit % 10); // Add the digits together
+			}
+			sumDouble = sumDouble + digit; // Add all even
 		} else {
-			sumOdd += digit;
+			sumOdd = sumOdd + digit; // Add all odd
 		}
 	}
 
-
-	int totalSum = sumDouble + sumOdd;
-	return (totalSum % 10 == 0);
+	int result = sumDouble + sumOdd;
+	return (result % 10 == 0); // Checks if divisible by 10
 }

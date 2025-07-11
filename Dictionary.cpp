@@ -1,3 +1,16 @@
+/****************************************************************
+*
+ * File: Dictionary.cpp
+ * By: Liecie Salvador
+ * Date: 7-10-25
+ *
+ * Description: This program implements a system which loads and
+ * processes a file containing definitions, reads and stores the data,
+ * and processes an input based on the desired parameters inputted
+ * by the user.
+ *
+ ****************************************************************/
+
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -24,9 +37,7 @@ int keywordCount = 0;   // Keyword and definition count tracker
 int definitionCount = 0;
 
 int main() {
-   // string filePath {R"(C:\Users\MickeyMouse\AbsolutePath\DB\Data.CS.SFSU.txt)"};
-
-    string filePath = "Data.CS.SFSU.txt";
+    string filePath {R"(C:\Users\MickeyMouse\AbsolutePath\DB\Data.CS.SFSU.txt)"};
 
     cout << "! Opening data file... " << filePath << endl;
 

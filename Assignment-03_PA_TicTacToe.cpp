@@ -1,3 +1,14 @@
+/****************************************************************
+*
+ * File: Assignment-03_PA_TicTacToe.cpp
+ * By: Liecie Salvador
+ * Date: 7-10-25
+ *
+ * Description: This program implements a Tic-Tac-Toe application,
+ * with the implementation of the following functions; isWon, isDraw
+ * displayBoard, and makeAMove.
+ *
+ ****************************************************************/
 #include <iostream>
 using namespace std;
 
@@ -46,7 +57,7 @@ int main() {
 	return 0;
 }
 
-void displayBoard(char board[0][3]) {
+void displayBoard(char board[0][3]) { // Function to display board
 		cout << "\n-------------\n";
 		for (int i = 0; i < 3; i++) {
 			cout << "|";
@@ -58,7 +69,7 @@ void displayBoard(char board[0][3]) {
 
 }
 
-void makeAMove(char board[3][3], char player) {
+void makeAMove(char board[3][3], char player) { // Function to ask for user input and check if move is valid
 		int row, col;
 		bool check = false;
 
@@ -69,18 +80,18 @@ void makeAMove(char board[3][3], char player) {
 			cin >> col;
 
 			if (board[row][col] != player && board[row][col] != 'X' && board[row][col] != 'O') {
-				board[row][col] = player;
+				board[row][col] = player; // "Storing" spot
 				check = true;
 			} else {
 				cout << "This cell is already occupied. Try a different cell.\n";
-				check = false;
+				check = false; // Loops if move is invalid
 			}
 
 		}
 	}
 
 
-bool isWon(char player, char  board[][3]) {
+bool isWon(char player, char  board[][3]) { // Function to check for three in a row
 	for (int i = 0; i < 3; i++) {
 		if (board[i][0] == player && board[i][1] == player && board[i][2] == player)
 			return true;
@@ -96,10 +107,10 @@ bool isWon(char player, char  board[][3]) {
 	return false;
 }
 
-bool isDraw(char board[][3]) {
+bool isDraw(char board[][3]) { // Function which checks spaces in board
 	for (int i = 0; i < 3; i++) {
 		for (int j = 0; j < 3; j++) {
-			if (board[i][j] == ' ')
+			if (board[i][j] == ' ') // If empty, game continues
 				return false;
 		}
 	}
