@@ -1,3 +1,10 @@
+#include <iostream>
+#include <vector>
+#include <iomanip>
+
+using namespace std;
+
+
 bool isvalidcc(const string&);
 
 int main()
@@ -26,4 +33,28 @@ int main()
 	}
 
 	return 0;
+}
+
+bool isvalidcc(const string& cc) {
+
+	int sumDouble = 0;
+	int sumOdd = 0;
+	int digit;
+
+	for (int i = 0; i < cc.length(); i++) {
+		digit = cc[i] - '0';
+		int posFromRight = cc.length() - i;
+
+		if (posFromRight % 2 == 0) {
+			digit *= 2;
+			if (digit > 9) digit = digit / 10 + digit % 10;
+			sumDouble += digit;
+		} else {
+			sumOdd += digit;
+		}
+	}
+
+
+	int totalSum = sumDouble + sumOdd;
+	return (totalSum % 10 == 0);
 }
